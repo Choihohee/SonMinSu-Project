@@ -15,12 +15,12 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
 
-    public User create(String username, String userPassword, String email) {    //, String phoneNumber
+    public User create(String userName, String userId, String userPassword, String email) {
         User user = new User();
-        user.setUserName(username);
+        user.setUserName(userName);
+        user.setUserId(userId);
         user.setUserPassword(passwordEncoder.encode(userPassword));
         user.setEmail(email);
-        //user.setPhoneNumber(phoneNumber);
         this.userRepository.save(user);
         return user;
     }

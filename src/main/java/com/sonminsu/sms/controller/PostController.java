@@ -53,17 +53,4 @@ public class PostController {
         this.postService.create(postForm.getSubject());   //질문 저장
         return "redirect:/post/list"; // 질문 저장후 질문목록으로 이동
     }
-    //이미지
-    /*
-    @PostMapping("/create")
-    public String postCreate(@Valid PostForm postForm, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "post_form";
-        }
-        // 이미지 업로드 및 저장 로직
-        String imagePath = postService.uploadImage(image); // 이미지를 업로드하고 경로를 받아옴
-
-        this.postService.create(postForm.getSubject(), imagePath);
-        return "redirect:/post/list"; // 질문 저장후 질문목록으로 이동
-    }*/
 }

@@ -8,12 +8,17 @@ import lombok.Setter;
 @Setter
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId; //아이디
+    private Integer Id;
+
 
     @Column(length = 10)
     private String userName; //닉네임
+
+    @Column(length = 10)
+    private String userId; //아이디
 
     @Column(length = 10)
     private String userPassword; //비밀번호
@@ -21,6 +26,4 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    /* @Column(unique = true)
-    private String phoneNumber;*/
 }
