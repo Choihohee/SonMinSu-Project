@@ -1,0 +1,54 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<div layout:fragment="comment" class="container my-3">
+    <!-- 게시물 제목 -->
+    <h2 class="border-bottom py-2" th:text="${post.subject}"></h2>
+
+
+    <!--TODO: 이미지 넣기
+    <div layout:fragment="comment" class="container">
+        <h5 class="my-3 border-bottom pb-2">게시물 상세 정보</h5>
+        <div>
+            <p th:text="${post.subject}"></p>
+
+            <img th:if="${post.imagePath}" th:src="@{${post.imagePath}}" alt="Post Image" style="max-width: 100%; max-height: 300px;">
+
+        </div>
+    </div>
+    -->
+    <!-- TODO: 3개정보 입력칸
+    <div class="card my-3">
+        <div clas   s="card-body">
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:text="${#temporals.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!-- 댓글의 갯수 표시 -->
+    <h5 class="border-bottom my-3 py-2"
+        th:text="|댓글 (${#lists.size(post.commentList)})|"></h5>
+    <!-- 댓글 반복 시작 -->
+    <ul>
+        <li th:each="comment : ${post.commentList}">
+            <p th:text="${comment.comment}"></p>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:text="${#temporals.format(comment.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <!-- 댓글 반복 끝  -->
+
+    <!-- 댓글 작성 -->
+    <form th:action="@{|/comment/create/${post.postId}|}" th:object="${commentForm}" method="post" class="my-3">
+        <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+        <textarea th:field="*{comment}" rows="3" class="form-control"></textarea>
+        <input type="submit" value="댓글등록" class="btn btn-primary my-2">
+    </form>
+
+</div>
+</html>

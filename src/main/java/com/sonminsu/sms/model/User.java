@@ -1,9 +1,6 @@
 package com.sonminsu.sms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,5 +10,17 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Integer userId; //아이디
+
+    @Column(length = 10)
+    private String userName; //닉네임
+
+    @Column(length = 10)
+    private String userPassword; //비밀번호
+
+    @Column(unique = true)
+    private String email;
+
+    /* @Column(unique = true)
+    private String phoneNumber;*/
 }

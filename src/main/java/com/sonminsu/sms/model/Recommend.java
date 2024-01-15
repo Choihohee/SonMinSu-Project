@@ -4,12 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Entity
-public class Like {
+public class Recommend {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer likeId;
 
