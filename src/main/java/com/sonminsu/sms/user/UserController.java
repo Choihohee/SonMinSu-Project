@@ -51,4 +51,26 @@ public class UserController {
 	public String login() {
 		return "login_form";
 	}
+
+	@GetMapping("/withdraw")
+	public String withdraw(WithdrawForm withdrawForm) {
+		return "withdraw_form";
+	}
+
+	@PostMapping("/withdraw")
+	public String withdraw(@Valid WithdrawForm withdrawForm, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "withdraw_form";
+		}
+
+		try {
+			userService.withdraw(withdrawForm.getUsername(), withdrawForm.getPassword());
+		} catch (Exception e) {
+			e.printStackTrace();
+			bindingResult.reject("withdrawFailed", e.getMessage());
+			return "withdraw_form";
+		}
+
+		return "redirect:/";
+	}
 }

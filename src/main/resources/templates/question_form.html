@@ -8,15 +8,23 @@
 			<label for="subject" class="form-label">제목</label>
 			<input type="text" th:field="*{subject}" class="form-control">
 		</div>
-		<div class="mb-3">
-			<label for="content" class="form-label">내용</label>
-			<textarea th:field="*{content}" class="form-control" rows="10"></textarea>
-		</div>
-		<div class="mb-3">
-			<label for="subject" class="form-label">제목</label>
-			<input type="text" th:field="*{subject}" class="form-control">
+		<div>
+			<div class="mb-3">
+				<label for="brandName" class="form-label">브랜드</label>
+				<textarea th:field="*{brandName}" class="form-control" rows="2"></textarea>
+			</div>
+			<div class="mb-3">
+				<label for="productName" class="form-label">제품명</label>
+				<textarea th:field="*{productName}" class="form-control" rows="2"></textarea>
+			</div>
+			<div class="mb-3">
+				<label for="urlLink" class="form-label">링크</label>
+				<textarea th:field="*{urlLink}" class="form-control" rows="2"></textarea>
+			</div>
+			<input type="file" name="file">
 		</div>
 		<input type="submit" value="저장하기" class="btn btn-primary my-2">
+		<br>
 	</form>
 </div>
 

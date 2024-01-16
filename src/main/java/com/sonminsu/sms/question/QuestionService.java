@@ -50,6 +50,10 @@ public class QuestionService {
 		return this.questionRepository.findAllByKeyword(kw, pageable);
 	}
 
+	public Page<Question> getListOrderByVoteCount(int page, String kw) {
+		return questionRepository.findAllBySubjectContainingIgnoreCaseOrderByVoterDesc(kw, PageRequest.of(page, 10));
+
+	}
 	public Question getQuestion(Integer id) {
 		Optional<Question> question = this.questionRepository.findById(id);
 		if (question.isPresent()) {
@@ -59,18 +63,23 @@ public class QuestionService {
 		}
 	}
 
-	public void create(String subject, String content, SiteUser user) {
+	public void create(String subject, String brandName, String productName, String urlLink, SiteUser user) {
 		Question q = new Question();
 		q.setSubject(subject);
-		q.setContent(content);
+		q.setBrandName(brandName);
+		q.setProductName(productName);
+		q.setUrlLink(urlLink);
 		q.setCreateDate(LocalDateTime.now());
 		q.setAuthor(user);
 		this.questionRepository.save(q);
 	}
 
-	public void modify(Question question, String subject, String content) {
+
+	public void modify(Question question, String subject, String brandName, String productName, String urlLink) {
 		question.setSubject(subject);
-		question.setContent(content);
+		question.setBrandName(brandName);
+		question.setProductName(productName);
+		question.setUrlLink(urlLink);
 		question.setModifyDate(LocalDateTime.now());
 		this.questionRepository.save(question);
 	}

@@ -12,7 +12,7 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	Question findBySubject(String subject);
 
-	Question findBySubjectAndContent(String subject, String content);
+	//Question findBySubjectAndContent(String subject, String brandName, String productName, String urlLink);
 
 	List<Question> findBySubjectLike(String subject);
 
@@ -28,9 +28,14 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
             + "left outer join SiteUser u2 on a.author=u2 "
             + "where "
             + "   q.subject like %:kw% "
-            + "   or q.content like %:kw% "
+            + "   or q.brandName like %:kw% "
+			+ "   or q.productName like %:kw% "
+			+ "   or q.urlLink like %:kw% "
             + "   or u1.username like %:kw% "
             + "   or a.content like %:kw% "
             + "   or u2.username like %:kw% ")
     Page<Question> findAllByKeyword(@Param("kw") String kw, Pageable pageable);
+
+	Page<Question> findAllBySubjectContainingIgnoreCaseOrderByVoterDesc(@Param("kw") String kw, Pageable pageable);
+
 }

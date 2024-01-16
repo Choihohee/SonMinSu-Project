@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -21,8 +22,14 @@ public class Question {
 	@Column(length = 200)
 	private String subject;
 
-	@Column(columnDefinition = "TEXT")
-	private String content;
+	@Column(length = 30)
+	private String brandName;   //브랜드명
+
+	@Column(length = 30)
+	private String productName; //제품명
+
+	@Column(length = 200)
+	private String urlLink; //제품링크
 
 	private LocalDateTime createDate;
 
@@ -33,7 +40,15 @@ public class Question {
 	private SiteUser author;
 
 	private LocalDateTime modifyDate;
-	
+
 	@ManyToMany
-    Set<SiteUser> voter;
+	@JoinTable(
+			name = "question_voters",
+			joinColumns = @JoinColumn(name = "question_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private Set<SiteUser> voter;
+
+	public Question() {
+		this.voter = new HashSet<>();
+	}
 }

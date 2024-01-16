@@ -20,4 +20,7 @@ public class SiteUser {
 
 	@Column(unique = true)
 	private String email;
+
+	private boolean active = true;  // 회원 활성 여부를 나타내는 필드
+
 }
