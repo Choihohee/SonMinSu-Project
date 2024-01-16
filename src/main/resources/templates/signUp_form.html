@@ -9,23 +9,19 @@
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
         <div class="mb-3">
-            <label for="userName" class="form-label">닉네임</label>
-            <input type="text" th:field="*{userName}" class="form-control">
+            <label for="username" class="form-label">사용자ID</label>
+            <input type="text" th:field="*{username}" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label for="password1" class="form-label">비밀번호</label>
+            <input type="password" th:field="*{password1}" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label for="userId" class="form-label">사용자ID</label>
-            <input type="text" th:field="*{userId}" class="form-control">
-        </div>
-
-        <div class="mb-3">
-            <label for="userPassword1" class="form-label">비밀번호</label>
-            <input type="password" th:field="*{userPassword1}" class="form-control">
-        </div>
-
-        <div class="mb-3">
-            <label for="userPassword2" class="form-label">비밀번호 확인</label>
-            <input type="password" th:field="*{userPassword2}" class="form-control">
+            <label for="password2" class="form-label">비밀번호 확인</label>
+            <input type="password" th:field="*{password2}" class="form-control">
         </div>
 
         <div class="mb-3">

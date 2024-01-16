@@ -1,4 +1,4 @@
-package com.sonminsu.sms.service;
+/*package com.sonminsu.sms.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,3 +38,4 @@ public class UserSecurityService implements UserDetailsService {
         return new User(user.getUsername(), user.getPassword(), authorities);
     }
 }
+*/
