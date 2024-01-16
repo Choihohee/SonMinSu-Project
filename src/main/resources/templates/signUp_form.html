@@ -1,53 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Italiana&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
-    <link href="/signUp.css" rel="stylesheet"/>
-    <title>Document</title></head>
-<body>
-<div class="v19_423">
-    <div class="v19_424"></div>
-    <div class="v19_425"></div>
-    <span class="v19_426">SonMinSu</span>
+<html layout:decorate="~{layout}">
+<div layout:fragment="comment" class="container my-3">
+    <div class="my-3 border-bottom">
+        <div>
+            <h4>회원가입</h4>
+        </div>
+    </div>
+    <form th:action="@{/user/signUp}" th:object="${userCreateForm}" method="post">
+        <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
-    <form th:action="@{/user/signUp}" th:object="${userCreateForm}" method="post"> <!-- 여기에 form 추가 -->
+        <div class="mb-3">
+            <label for="userName" class="form-label">닉네임</label>
+            <input type="text" th:field="*{userName}" class="form-control">
+        </div>
 
-    <div class="v64_2"></div>
-    <span class="v64_3"> 사용하실 닉네임을 입력하세요.</span>
-
-    <div class="v19_427">
-            <label for="userId" class="v19_428"> 아이디를 입력하세요.</label>
+        <div class="mb-3">
+            <label for="userId" class="form-label">사용자ID</label>
             <input type="text" th:field="*{userId}" class="form-control">
-    </div>
+        </div>
 
-    <div class="v19_429"></div>
-    <span class="v19_430"> 비밀번호를 입력하세요.</span>
+        <div class="mb-3">
+            <label for="userPassword1" class="form-label">비밀번호</label>
+            <input type="password" th:field="*{userPassword1}" class="form-control">
+        </div>
 
-    <div class="v19_458"></div>
-    <span class="v19_459"> 비밀번호를 한번 더 입력하세요.</span>
+        <div class="mb-3">
+            <label for="userPassword2" class="form-label">비밀번호 확인</label>
+            <input type="password" th:field="*{userPassword2}" class="form-control">
+        </div>
 
-    <div class="v60_2"></div>
-    <span class="v60_3">이메일을 입력하세요.</span>
+        <div class="mb-3">
+            <label for="email" class="form-label">이메일</label>
+            <input type="email" th:field="*{email}" class="form-control">
+        </div>
 
-    <div class="v19_431"></div>
-    <span class="v19_432">Sign in</span>
-
-    <div class="v19_433"></div>
-    <div class="v19_434"></div>
-    <div class="v19_435"></div>
-    <div class="v19_436"></div>
-    <div class="v19_437">
-        <div class="v19_438"></div>
-        <span class="v19_439">home</span>
-        <div class="v19_440"></div>
-    </div>
-    <div class="v19_454">
-        <div class="v19_455"></div>
-        <span class="v19_456">login</span>
-        <div class="v19_457"></div>
-    </div>
+        <button type="submit" class="btn btn-primary">회원가입</button>
     </form>
 </div>
-</body>
 </html>

@@ -1,14 +1,16 @@
 package com.sonminsu.sms.controller;
 
+import com.sonminsu.sms.form.UserCreateForm;
 import com.sonminsu.sms.service.UserService;
 import jakarta.validation.Valid;
-import com.sonminsu.sms.form.UserCreateForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.dao.DataIntegrityViolationException;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -17,14 +19,13 @@ public class UserController {
 
     private final UserService userService;
 
-    //회원가입 페이지
     @GetMapping("/signUp")
-    public String signIn(UserCreateForm userCreateForm) {
+    public String signUp(UserCreateForm userCreateForm) {
         return "signUp_form";
     }
 
     @PostMapping("/signUp")
-    public String signIn(@Valid UserCreateForm userCreateForm, BindingResult bindingResult) {
+    public String signUp(@Valid UserCreateForm userCreateForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "signUp_form";
         }
@@ -35,8 +36,22 @@ public class UserController {
             return "signUp_form";
         }
 
-        userService.create(userCreateForm.getUserName(), userCreateForm.getUserId(), userCreateForm.getEmail(), userCreateForm.getUserPassword1());
-
+        try {
+            userService.create(userCreateForm.getUserName(),userCreateForm.getUserId(), userCreateForm.getUserPassword1(), userCreateForm.getEmail());
+        }catch(DataIntegrityViolationException e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
+            return "signUp_form";
+        }catch(Exception e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", e.getMessage());
+            return "signUp_form";
+        }
         return "redirect:/";
+    }
+
+    @GetMapping("/signIn")
+    public String login() {
+        return "signIn_form";
     }
 }

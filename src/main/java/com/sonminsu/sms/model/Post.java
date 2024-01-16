@@ -20,8 +20,6 @@ public class Post {
 
     private LocalDateTime createDate;   //만든 날짜
 
-    @Column(length = 255)
-    private String imagePath;      //이미지
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Recommend> RecommendList;
 
