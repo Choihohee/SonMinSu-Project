@@ -21,12 +21,9 @@ public class User {
     private Long id;
 
     @Column(unique = true)
-    private String userName; //닉네임
+    private String username; //닉네임
 
-    @Column(unique = true)
-    private String userId; //아이디
-
-    private String userPassword; //비밀번호
+    private String password; //비밀번호
 
     @Column(unique = true)
     private String email;

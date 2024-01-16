@@ -14,11 +14,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public User create(String userName, String userId, String userPassword, String email) {
+    public User create(String username, String password, String email) {
         User user = new User();
-        user.setUserName(userName);
-        user.setUserId(userId);
-        user.setUserPassword(passwordEncoder.encode(userPassword));
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
         user.setEmail(email);
         this.userRepository.save(user);
         return user;

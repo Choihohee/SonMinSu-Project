@@ -23,7 +23,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/create/{commentId}")
-    public String createAnswer(Model model, @PathVariable("commentId") Integer commentId, @Valid CommentForm commentForm, BindingResult bindingResult) {
+    public String createComment(Model model, @PathVariable("commentId") Integer commentId, @Valid CommentForm commentForm, BindingResult bindingResult) {
         Post post = this.postService.getPost(commentId);
         if (bindingResult.hasErrors()) {
             model.addAttribute("post", post);

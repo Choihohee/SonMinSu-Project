@@ -20,8 +20,6 @@ public class Post {
 
     private LocalDateTime createDate;   //만든 날짜
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    private List<Recommend> RecommendList;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> CommentList;
